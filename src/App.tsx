@@ -1,19 +1,23 @@
-import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
+// Router
+import { routers } from "./routers/routers";
 
 function App() {
   return (
-    <div className="w-screen h-screen flex justify-center items-center flex-col">
-      <header className="mb-5">
-        <main className="text-xl font-bold">Create React App Template</main>
-      </header>
-      <div>
-        <div>* TypeScript</div>
-        <div>* Redux Tool kits</div>
-        <div>* Redux Saga</div>
-        <div>* React Router Dom</div>
-        <div>* Tailwinds css</div>
-      </div>
-    </div>
+    <Router>
+      <Routes>
+        {routers?.map((routeItem, index) => {
+          return (
+            <Route
+              key={index}
+              path={routeItem.path}
+              element={<routeItem.component />}
+            />
+          );
+        })}
+      </Routes>
+    </Router>
   );
 }
 
